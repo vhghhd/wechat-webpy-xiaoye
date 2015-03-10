@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>  
+  <title>婚纱相册</title>
+  <style>
+    body{
+      background: #eee;
+    }
+
+    .gallery{
+      list-style: none;
+      margin: 50px auto; padding: 0;
+      width: 642px; /* (200+10+4)x3 */
+      font-size: 0; /* fix inline-block spacing */
+    }
+
+    .gallery li{
+        display: inline-block;
+        *display: inline;
+        zoom: 1;
+        width: 600px; height: 600px;
+        margin: 2px;
+        border: 5px solid #fff;
+        -moz-box-shadow: 0 2px 2px rgba(0,0,0,.1);
+        -webkit-box-shadow: 0 2px 2px rgba(0,0,0,.1);
+        box-shadow: 0 2px 2px rgba(0,0,0,.1);
+        -webkit-transition: all .3s ease;
+        -moz-transition: all .3s ease;
+        -ms-transition: all .3s ease;
+        -o-transition: all .3s ease;
+        transition: all .3s ease;        
+    }
+
+    .gallery:hover li:not(:hover){       
+        -webkit-filter: blur(2px) grayscale(1);
+        -moz-filter: blur(2px) grayscale(1);
+        -o-filter: blur(2px) grayscale(1);
+        -ms-filter: blur(2px) grayscale(1);
+        filter: blur(2px) grayscale(1);
+        opacity: .7; /* fallback */        
+    }
+
+    /* Demo page only */
+    #about{
+        color: #999;
+        text-align: center;
+        font: 0.9em Arial, Helvetica;
+    }
+
+    #about a{
+        color: #777;
+    }   
+  </style>
+</head>
+
+<body>
+
+  <h1>建议在手机浏览器中查看</h1>
+  <ul class="gallery">
+      <li><img src="/static/images/first.JPG"></li>
+      <li><img src="/static/images/second.jpg"></li>
+      <li><img src="/static/images/third.jpg"></li>
+      <li><img src="/static/images/four.JPG"></li>
+      <li><img src="/static/images/five.JPG"></li>
+      <li><img src="/static/images/six.JPG"></li> 
+      <li><img src="/static/images/eight.JPG"></li> 
+      <li><img src="/static/images/nine.JPG"></li>
+	  <li><img src="/static/images/seven.JPG"></li>
+	  <li><img src="/static/images/ten.JPG"></li>
+  </ul>
+<div style="text-align:center;clear:both;">
+
+</div>
+
+</body>
+</html>

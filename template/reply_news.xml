@@ -1,0 +1,17 @@
+$def with (toUser,fromUser,createTime,articlecount,titles,descriptions,picurls,urls)
+<xml>
+<ToUserName><![CDATA[$toUser]]></ToUserName>
+<FromUserName><![CDATA[$fromUser]]></FromUserName>
+<CreateTime>$createTime</CreateTime>
+<MsgType><![CDATA[news]]></MsgType>
+<ArticleCount>$articlecount</ArticleCount>
+<Articles>
+$for i in range(0,articlecount):
+	<item>
+		<Title><![CDATA[$titles[i]]]></Title> 
+		<Description><![CDATA[$descriptions[i]]]></Description>
+		<PicUrl><![CDATA[$picurls[i]]]></PicUrl>
+		<Url><![CDATA[$urls[i]]]></Url>
+	</item>
+</Articles>
+</xml>
