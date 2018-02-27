@@ -1,0 +1,89 @@
+$def with (url)
+<!--  anthor: zhangye-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+    	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    	<meta name="renderer" content="webkit">
+		<meta name="author" content="James Liu">
+    	<meta name="description" content="Damoo by James Liu">
+    	<meta name="keywords" content="damoo,danmu,danmaku">
+    	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=0">
+    	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    	<style type="text/css">
+    		html, body, #dm-main {
+        		margin: 0;
+        		padding: 0;
+        		border: 0;
+        		font: 22px Menlo, monospace;
+    		}
+    		html {
+        		background: transparent;
+    		}
+   			body {
+        		background-color: #FFF;
+    		}
+    		a, a:visited, a:active {
+        		color: #888;
+        		text-decoration: none;
+    		}
+    		a:hover {
+        		color: #aaa;
+        		text-decoration: underline;
+    		}
+    		#dm-screen {
+        		color: #888;
+    		}
+    		#dm-info {
+        		padding: 10px;
+        		border-radius: 3px;
+        		display: block;
+        		position: absolute;
+        		left: 0px;
+        		top: 0px;
+        		z-index: 100000;
+        		background-color: rgba(255, 255, 255, 0.2);
+    		}
+    	</style>
+        <title>Our Dan Mu</title>
+	</head>
+	<body>
+    	<div id="dm-main">
+        	<div id="dm-screen">
+            	<div id="dm-info">
+                	<span id="dm-version"></span> 
+                	<!--by James Liu (<a href="https://github.com/jamesliu96/Damoo">source code</a>)-->
+            	</div>
+        	</div>
+    	</div>
+        <script type="text/javascript" src="/_sae/channel/api.js"></script>
+		<script type="text/javascript" src="/static/js/damoo.min.js"></script>
+		<script type="text/javascript">
+            var ChannelSocket = function(myurl) {
+            	this.url = myurl; 
+            }
+            ChannelSocket.prototype = {
+                CreateChannel:function() {
+                    var danmoo = Damoo('dm-screen', 'dm-canvas', 20, "Arial");
+                    danmoo.start();
+                	this.channelsocket = sae.Channel(this.url);
+                    this.channelsocket.onmessage = function(message) {
+                    	danmoo.emit({ text: message.data, color: "#" + Math.random().toString(16).substring(2).substring(0, 6) }); 
+                    }
+                }
+            }
+           
+            function DrawWindow(window) {
+            	var scrn = window.document.getElementById('dm-screen');
+            	scrn.style.width = window.innerWidth + "px";
+            	scrn.style.height = window.innerHeight + "px";
+            	scrn.style.opacity = 1;
+            }
+            
+            DrawWindow(window);
+            var channel = new ChannelSocket('$url');
+            channel.CreateChannel();
+    	</script>
+	</body>
+</html>
